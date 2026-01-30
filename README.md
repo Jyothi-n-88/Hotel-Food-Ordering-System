@@ -5,6 +5,10 @@ Visista Bhojana is a full-stack hotel food ordering web application designed to 
 This project simulates a real-world hotel food management workflow with separate admin and user roles.
 
 ---
+## 🎥 Live Demo
+
+▶️ Watch Project Demo:  
+👉 https://drive.google.com/file/d/18M_XUudHjSMSdKLWOjuzIORbTKEQ93Tv/view?usp=sharing
 
 ## 🚀 Features
 
@@ -61,5 +65,4 @@ This project simulates a real-world hotel food management workflow with separate
 
 ---
 
-## 📁 Project Structure
 
