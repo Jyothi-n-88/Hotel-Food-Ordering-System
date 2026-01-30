@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visista Bojana | Hotel Dining</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary-color: #c27a09;
+      --secondary-color: #2c3e50;
+      --text-light: #f8f9fa;
+      --overlay-dark: rgba(0, 0, 0, 0.65);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html { height: 100%; font-family: 'Poppins', sans-serif; }
+
+    /* --- HERO SECTION --- */
+    .landing-hero {
+      background-image: linear-gradient(var(--overlay-dark), var(--overlay-dark)),
+      url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .welcome-card {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 3rem;
+      border-radius: 18px;
+      text-align: center;
+      color: var(--text-light);
+      max-width: 500px;
+      width: 90%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      animation: fadeInUp 1s ease;
+    }
+
+    .brand-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--primary-color);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .tagline { margin: 1rem 0 2rem; font-weight: 300; font-size: 1.1rem; }
+
+    .button-group { display: flex; flex-direction: column; gap: 1rem; }
+
+    .btn {
+      padding: 1rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-primary { background: var(--primary-color); color: white; }
+    .btn-secondary { background: transparent; border: 2px solid white; color: white; }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+    /* --- ADMIN LINK (Discrete) --- */
+    .admin-trigger {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+    .admin-trigger:hover { color: var(--primary-color); text-decoration: underline; }
+
+    /* --- MODAL SYSTEM --- */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show { display: flex; opacity: 1; }
+
+    .modal-box {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 14px;
+      width: 90%;
+      max-width: 380px;
+      position: relative;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .modal.show .modal-box { transform: scale(1); }
+
+    .modal-box h2 { text-align: center; margin-bottom: 1.5rem; color: var(--secondary-color); }
+    
+    /* Special header color for Admin */
+    .admin-header { color: #d35400 !important; }
+
+    .form-group { margin-bottom: 1rem; }
+
+    .modal-box label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #555;
+    }
+
+    .modal-box input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    .modal-box input:focus { outline: none; border-color: var(--primary-color); }
+
+    .modal-box button {
+      width: 100%;
+      margin-top: 10px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .modal-box button:hover { background: #a66908; }
+
+    .close {
+      position: absolute;
+      top: 15px; right: 15px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #999;
+    }
+    .close:hover { color: #333; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 600px) {
+      .button-group { flex-direction: row; justify-content: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="landing-hero">
+  <section class="welcome-card">
+    <h1 class="brand-title">Visista Bojana</h1>
+    <p class="tagline">🍽️ Experience exquisite hotel dining</p>
+
+    <div class="button-group">
+      <a href="/customer" class="btn btn-primary">Order as Guest</a>
+      <button class="btn btn-secondary" onclick="openModal('loginModal')">User Login</button>
+      <button class="btn btn-secondary" onclick="openModal('signupModal')">Sign Up</button>
+    </div>
+  </section>
+
+  <!-- Discrete Admin Link -->
+  <div class="admin-trigger" onclick="openModal('adminModal')">
+    🔐 Admin Access
+  </div>
+</main>
+
+<!-- ================= MODALS ================= -->
+
+<!-- 1. USER LOGIN MODAL -->
+<div class="modal" id="loginModal">
+  <div class="modal-box">
+    <div class="close" onclick="closeAll()">✖</div>
+    <h2>Welcome Back</h2>
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" required autocomplete="current-password" />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- 2. SIGNUP MODAL -->
+<div class="modal" id="signupModal">
+  <div class="modal-box">
+    <div class="close" onclick="closeAll()">✖</div>
+    <h2>Create Account</h2>
+    <form action="/signup" method="POST">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" required autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" required autocomplete="new-password" />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+<!-- 3. ADMIN LOGIN MODAL (Migrated from admin-login.ejs) -->
+<div class="modal" id="adminModal">
+  <div class="modal-box">
+    <div class="close" onclick="closeAll()">✖</div>
+    <h2 class="admin-header">🔐 Admin Portal</h2>
+    
+    <form id="adminLoginForm">
+      <div class="form-group">
+        <label>Admin Username</label>
+        <input type="text" name="username" required placeholder="Enter admin username">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <p id="adminError" style="color:red; display:none;"></p>
+      </div>
+      <button type="submit" style="background-color: #d35400;">Admin Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ================== MODAL LOGIC ==================
+  const modals = document.querySelectorAll('.modal');
+
+  // Generic function to open a specific modal
+  function openModal(modalId) {
+    closeAll(); // Close any currently open modals first
+    const modal = document.getElementById(modalId);
+    if(modal) {
+      modal.classList.add('show');
+    }
+  }
+
+  // Close all modals
+  function closeAll() {
+    modals.forEach(modal => {
+      modal.classList.remove('show');
+    });
+  }
+
+  // Close when clicking outside the modal box
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+      closeAll();
+    }
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+      closeAll();
+    }
+  });
+
+  // ================== ADMIN LOGIN (AJAX) ==================
+  const adminForm = document.getElementById('adminLoginForm');
+  const adminError = document.getElementById('adminError');
+
+  adminForm.addEventListener('submit', async (e) => {
+    e.preventDefault(); // prevent default form POST
+
+    // Get form data
+    const formData = new FormData(adminForm);
+    const data = {
+      username: formData.get('username'),
+      password: formData.get('password')
+    };
+
+    try {
+      // Send POST request to /admin/login
+      const response = await fetch('/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if(result.success) {
+        // login success → redirect
+        window.location.href = '/admin/dashboard';
+      } else {
+        // show error inside modal
+        adminError.textContent = result.message;
+        adminError.style.display = 'block';
+      }
+
+    } catch (err) {
+      adminError.textContent = 'Server error. Try again.';
+      adminError.style.display = 'block';
+    }
+  });
+
+  // ================== USER/SIGNUP ERROR HANDLING (Optional) ==================
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.get('adminError')) {
+    openModal('adminModal');
+    adminError.textContent = urlParams.get('adminError');
+    adminError.style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

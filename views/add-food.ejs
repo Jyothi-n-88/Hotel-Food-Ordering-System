@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Item | Visista Bojana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; background: #f4f6f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+    
+    .form-container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      border-top: 5px solid #c27a09; /* Gold */
+    }
+
+    h2 { margin-top: 0; color: #2c3e50; text-align: center; }
+    
+    .form-group { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 8px; color: #666; font-weight: 500; }
+    
+    input[type="text"], input[type="number"], input[type="file"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-sizing: border-box; /* Fixes padding issues */
+    }
+
+    input:focus { outline: none; border-color: #c27a09; }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #c27a09;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    button:hover { background: #a06305; }
+    .cancel-link { display: block; text-align: center; margin-top: 15px; color: #888; text-decoration: none; }
+    .cancel-link:hover { color: #333; }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Add New Item</h2>
+    
+    <form action="/admin/add" method="POST" enctype="multipart/form-data">
+      
+      <div class="form-group">
+        <label>Food Name</label>
+        <input type="text" name="name" placeholder="e.g. Chicken Biryani" required>
+      </div>
+
+      <div class="form-group">
+        <label>Price (₹)</label>
+        <input type="number" name="price" placeholder="e.g. 250" required>
+      </div>
+
+      <div class="form-group">
+        <label>Food Image</label>
+        <input type="file" name="foodImage" accept="image/*" required>
+        <small style="color:#999">Accepted: JPG, PNG, JPEG</small>
+      </div>
+
+      <button type="submit">Add Item</button>
+      <a href="/admin" class="cancel-link">Cancel</a>
+    </form>
+  </div>
+
+</body>
+</html>
